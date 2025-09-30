@@ -56,10 +56,12 @@ Author URL: http://w3layouts.com
         .contact-form label {
             font-size: 14px;
             margin-bottom: 8px;
-            color: #555;
+            color: black;
+            font-weight: 600;
         }
 
         .contact-form input[type="text"],
+        .contact-form input[type="file"],
         .contact-form select {
             padding-left: 12px;
             border: none;
@@ -69,9 +71,11 @@ Author URL: http://w3layouts.com
             width: 100%;
             outline: none;
             transition: border 0.3s ease;
+            margin-bottom: 20px;
         }
 
         .contact-form input[type="text"]:focus,
+        .contact-form input[type="file"]:focus,
         .contact-form select:focus {
             border-color: #4cafef;
             box-shadow: 0 0 6px rgba(76, 175, 239, 0.2);
@@ -80,11 +84,11 @@ Author URL: http://w3layouts.com
         /* ✅ Submit Button */
         .contact-form input[type="submit"] {
             border: none;
-            width: 95%;
+            width: 98%;
             height: 40px;
             border-radius: 6px;
             margin: auto;
-            background: #89C03D;
+            background: darkgreen;
             color: #fff;
             font-size: 16px;
             font-weight: 600;
@@ -104,6 +108,7 @@ Author URL: http://w3layouts.com
             }
 
             .contact-form input[type="text"],
+            .contact-form input[type="file"],
             .contact-form select {
                 font-size: 14px;
                 padding: 10px;
@@ -156,6 +161,12 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sponsor.html">Sponsors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="exhibitors.html">Exhibitors</a>
+                        </li>
                     </ul>
                     <form
                         action="https://p.w3layouts.com/demos_new/template_demo/02-02-2022/workup-liberty-demo_Free/60229367/web/error.html"
@@ -183,7 +194,6 @@ Author URL: http://w3layouts.com
             </nav>
         </div>
     </header>
-    <!-- //header -->
 
     <!-- inner banner -->
     <section class="inner-banner py-5">
@@ -198,48 +208,184 @@ Author URL: http://w3layouts.com
         </div>
     </section>
 
-    <section class="contact-form ">
+    <section class="contact-form">
         <p>Register for NIPITECS 2025</p>
-        <form action="">
+
+        <!-- Registration Type Dropdown -->
+        <div class="container">
+            <label for="regType">Select Registration Type</label>
+            <select id="regType" onchange="handleRegistrationType()">
+                <option value="">-- Choose an Option --</option>
+                <option value="regular">Regular</option>
+                <option value="student">Student</option>
+                <option value="plan">Plan Members</option>
+                <option value="sponsor">Sponsor</option>
+                <option value="exhibitor">Exhibitor</option>
+            </select>
+        </div>
+
+        <!-- Dynamic Fee Display -->
+        <div id="feeDisplay"
+            style="display:none; text-align:center; font-size:18px; font-weight:bold; color:darkgreen; margin:15px 0;">
+        </div>
+
+        <!-- Hidden Form -->
+        <form id="regForm" style="display: none; margin-top:20px;">
             <div class="container">
                 <label for="fname">First Name</label>
-                <input type="text" id="fname" name="fname" placeholder="Your name..">
+                <input type="text" id="fname" name="fname" placeholder="Your name.." required>
             </div>
             <div class="container">
                 <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lname" placeholder="Your last name..">
+                <input type="text" id="lname" name="lname" placeholder="Your last name.." required>
             </div>
             <div class="container">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Your email..">
+                <input type="text" id="email" name="email" placeholder="Your email.." required>
             </div>
             <div class="container">
-                <select name="" id="">
+                <select name="gender" required>
                     <option value="">Gender</option>
-                    <option value="">Male</option>
-                    <option value="">Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            <div class="container">
+                <select name="state" required>
+                    <option value="">State of residence</option>
+                    <option value="lagos">Lagos</option>
+                    <option value="abuja">Abuja</option>
+                    <option value="rivers">Rivers</option>
+                    <option value="kano">Kano</option>
+                    <option value="ogun">Ogun</option>
+                    <option value="oyo">Oyo</option>
+                    <option value="edo">Edo</option>
+                    <option value="delta">Delta</option>
+                    <option value="enugu">Enugu</option>
+                    <option value="anambra">Anambra</option>
+                    <option value="akwa-ibom">Akwa Ibom</option>
                 </select>
             </div>
 
-            <div class="container">
-                <select name="" id="">
-                    <option value="">State of residence</option>
-                    <option value="">Lagos</option>
-                    <option value="">Abuja</option>
-                    <option value="">Rivers</option>
-                    <option value="">Kano</option>
-                    <option value="">Ogun</option>
-                    <option value="">Oyo</option>
-                    <option value="">Edo</option>
-                    <option value="">Delta</option>
-                    <option value="">Enugu</option>
-                    <option value="">Anambra</option>
-                    <option value="">Akwa Ibom</option>
-                </select>
+            <!-- Hidden ID Upload Field -->
+            <div class="container" id="idUploadField" style="display: none; margin-bottom: 20px;">
+                <label for="idCard">Upload Student ID</label>
+                <input type="file" id="idCard" name="idCard" accept="image/*,.pdf">
             </div>
+
             <input type="submit" value="Submit">
         </form>
     </section>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <script>
+        const regType = document.getElementById("regType");
+        const regForm = document.getElementById("regForm");
+        const feeDisplay = document.getElementById("feeDisplay");
+        const idUpload = document.getElementById("idUpload");
+
+        const fees = {
+            regular: 32500,
+            student: 25000
+            // plan handled separately (50% discount during Paystack)
+        };
+
+        let planEmails = [
+            // ✅ Hardcoded fallback emails
+            "johndoe@example.com",
+            "janedoe@example.com",
+            "student1@school.edu",
+            "member123@gmail.com"
+        ].map(e => e.toLowerCase());
+
+        // Example: check if entered email is in plan list
+        function isPlanMember(email) {
+            return planEmails.includes(email.trim().toLowerCase());
+        }
+        regType.addEventListener("change", function () {
+            const type = this.value;
+
+            if (type === "sponsor") {
+                window.location.href = "sponsor.html";
+                return;
+            }
+            if (type === "exhibitor") {
+                window.location.href = "exhibitors.html";
+                return;
+            }
+
+            if (type) {
+                regForm.style.display = "block";
+
+                if (type === "regular" || type === "student") {
+                    feeDisplay.style.display = "block";
+                    feeDisplay.textContent = `Registration Fee: ₦${fees[type].toLocaleString()}`;
+                } else {
+                    feeDisplay.style.display = "none"; // hide fee for plan
+                }
+
+                // Show ID upload for student & plan
+                if (type === "student") {
+                    idUpload.style.display = "block";
+                } else {
+                    idUpload.style.display = "none";
+                }
+
+            } else {
+                regForm.style.display = "none";
+                feeDisplay.style.display = "none";
+            }
+        });
+
+        // Handle form + payment
+        regForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const type = regType.value;
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            let amount = 0;
+
+            if (type === "regular") {
+                amount = fees.regular * 100;
+            }
+            else if (type === "student") {
+                amount = fees.student * 100;
+            }
+            else if (type === "plan") {
+                // ✅ Validate plan member email before continuing
+                if (!planEmails.includes(email)) {
+                    alert("This email is not recognized as a valid plan member.");
+                    return;
+                }
+                amount = (fees.regular * 0.5) * 100; // 50% discount
+            }
+
+            // Save form data (replace with API call if needed)
+            const formData = {
+                firstName: document.getElementById("fname").value,
+                lastName: document.getElementById("lname").value,
+                email: email,
+                type: type
+            };
+            console.log("Form Data Saved:", formData);
+
+            // Trigger Paystack
+            var handler = PaystackPop.setup({
+                key: 'pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63', // Replace with your Paystack public key
+                email: email,
+                amount: amount,
+                currency: "NGN",
+                callback: function (response) {
+                    alert('Payment successful! Ref: ' + response.reference);
+                },
+                onClose: function () {
+                    alert('Transaction was not completed.');
+                }
+            });
+            handler.openIframe();
+        });
+    </script>
 
     <!-- footer -->
     <footer class="w3l-footer py-5">
@@ -303,8 +449,10 @@ Author URL: http://w3layouts.com
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fas fa-level-up-alt" aria-hidden="true"></span>
     </button>
-    <script data-cfasync="false"
-        src="../../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+    <script data-cfasync="false" src="../../../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+    </script>
+
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {
@@ -333,7 +481,6 @@ Author URL: http://w3layouts.com
 
     <!-- theme switch js (light and dark)-->
     <script src="assets/js/theme-change.js"></script>
-    <!-- //theme switch js (light and dark)-->
 
     <!-- MENU-JS -->
     <script>
@@ -362,7 +509,6 @@ Author URL: http://w3layouts.com
             });
         });
     </script>
-    <!-- //MENU-JS -->
 
     <!-- disable body scroll which navbar is in active -->
     <script>
@@ -372,12 +518,11 @@ Author URL: http://w3layouts.com
             })
         });
     </script>
-    <!-- //disable body scroll which navbar is in active -->
 
     <!-- bootstrap -->
     <script src="assets/js/bootstrap.min.js"></script>
-    <!-- //bootstrap -->
-    <!-- //Js scripts -->
+
+
     <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'980a65e32aeecb8b',t:'MTc1ODEzMDkyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='../../../../../../cdn-cgi/challenge-platform/h/g/scripts/jsd/f78657f80e4b/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/images/download (1).png" type="image/x-icon">
+    <title>NIPITECS </title>
+    <!-- Google fonts -->
+    <link
+        href="http://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+    <link rel="stylesheet" href="assets/lib/fontawesome-free-6.7.2-web/css/all.min.css">
+    <style>
+        .info-section {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .info-section .info-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 30%;
+        }
+
+        .info-section .info-item h4 {
+            margin-bottom: 10px;
+            color: darkgreen;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .info-section .info-item p {
+            color: #555;
+            font-size: 1em;
+            text-align: left;
+        }
+
+        @media screen and (max-width: 768px) {
+            .info-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-section .info-item {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+        }
+
+        h3 {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-content h4 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content button.close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .modal-content .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fa-solid fa-n" aria-colcount="true"></i> ipitecs
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.html">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sponsor.html">Sponsors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="exhibitors.html">Exhibitors</a>
+                        </li>
+                    </ul>
+                    <form
+                        action="https://p.w3layouts.com/demos_new/template_demo/02-02-2022/workup-liberty-demo_Free/60229367/web/error.html"
+                        method="GET" class="d-flex search-header ms-lg-2">
+                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
+                            required>
+                        <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+
+    <section class="inner-banner py-5">
+        <div class="w3l-breadcrumb py-lg-5">
+            <div class="container pt-5 pb-sm-4">
+                <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">Exhibit Your Products</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><i class="fas fa-angle-right mx-2"></i>Exhibitors</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-item">
+            <h4>Attendees</h4>
+            <p>Diverse industry professionals</p>
+        </div>
+        <div class="info-item">
+            <h4>Exhibitors</h4>
+            <p>Showcasing cutting-edge solutions</p>
+        </div>
+        <div class="info-item">
+            <h4>Sectors</h4>
+            <p>Representing the entire pipeline chain</p>
+        </div>
+    </section>
+
+    <section style="background-color: white; padding: 30px;">
+        <h1 style="text-align: center; font-size: 28px; color: darkgreen;">Exhibition Floor Space</h1>
+        <div class="info-section" style="background-color: white;">
+            <div class="info-item" style="background-color: #f9f9f9;">
+                <h4>9m² (<span style="font-weight: 300; font-size: 16px;">Free for Silver Partners</span>)</h4>
+                <h3 style="font-size: 20px;">₦2,000,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Floor Space - 9m²', '₦2,000,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="info-item" style="background-color: #f9f9f9;">
+                <h4>18m² (<span style="font-weight: 300; font-size: 16px;">Free for Gold Partners</span>)</h4>
+                <h3 style="font-size: 20px;">₦4,000,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Floor Space - 18m²', '₦4,000,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="info-item" style="background-color: #f9f9f9;">
+                <h4>36m² (<span style="font-weight: 300; font-size: 16px;">Free for Platinum Partners</span>)</h4>
+                <h3 style="font-size: 20px;">₦7,500,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Floor Space - 36m²', '₦7,500,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section style=" padding: 30px; background-color: #f9f9f9;">
+        <h1 style="text-align: center; font-size: 28px; color: darkgreen;">Exhibition Booth Options</h1>
+        <div class="info-section">
+            <div class="info-item">
+                <h4>9m²</h4>
+                <h3 style="font-size: 20px;">₦1,000,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Booth - 9m²', '₦1,000,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="info-item">
+                <h4>18m²</h4>
+                <h3 style="font-size: 20px;">₦2,500,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Booth - 18m²', '₦2,500,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="info-item">
+                <h4>36m²</h4>
+                <h3 style="font-size: 20px;">₦3,500,000</h3>
+                <a href="javascript:void(0);" class="btn btn-style"
+                    onclick="openSponsorForm('Exhibition Booth - 36m²', '₦3,500,000')">
+                    Book a Space<i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+        <h5 style="text-align: left; max-width: 800px; margin: auto; font-weight: bold; color: darkgreen;">Custom Booths
+        </h5>
+        <p style="text-align: left; max-width: 800px; margin: auto;">For custom booth case-by-case (based on your
+            specs), please contact our sales team at <a href="mailto:admin@nipitecs.com">admin@nipitecs.com
+            </a>
+        </p>
+    </section>
+
+    <!-- ===== FORM MODAL ===== -->
+    <div id="sponsor-form" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeSponsorForm()">&times;</button>
+            <h4 id="form-title"></h4>
+            <form onsubmit="event.preventDefault(); showPaymentOptions();">
+                <input type="text" name="name" placeholder="Company Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="phone" placeholder="Phone" required>
+                <button type="submit" class="btn btn-style">Proceed</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== PAYMENT MODAL ===== -->
+    <div id="payment-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closePaymentModal()">&times;</button>
+            <h4 id="payment-title">Complete Payment</h4>
+            <p id="payment-price" style="font-weight:bold;"></p>
+            <button class="btn btn-style" style="width:100%;" onclick="payWithPaystack()">Pay with Paystack</button>
+        </div>
+    </div>
+
+
+    <!-- Paystack Inline Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        let selectedPackage = "";
+        let selectedPrice = "";
+
+        function openSponsorForm(level, price) {
+            selectedPackage = level;
+            selectedPrice = price.replace(/[^0-9]/g, ""); // store as numbers only
+            document.getElementById('form-title').innerText = "Book: " + level;
+            document.getElementById('sponsor-form').style.display = 'flex';
+        }
+
+        function closeSponsorForm() {
+            document.getElementById('sponsor-form').style.display = 'none';
+        }
+
+        function showPaymentOptions() {
+            const form = document.querySelector("#sponsor-form form");
+
+            const name = form.querySelector('input[name="name"]').value;
+            const email = form.querySelector('input[name="email"]').value;
+            const phone = form.querySelector('input[name="phone"]').value;
+
+            // Pass details to Paystack
+            payWithPaystack(name, email, phone);
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+        }
+
+        function payWithPaystack(name, email, phone) {
+            let handler = PaystackPop.setup({
+                key: 'pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63', // Replace with your public key
+                email: email,
+                amount: selectedPrice * 100, // Convert to kobo
+                currency: "NGN",
+                ref: 'NIPITECS-' + Math.floor((Math.random() * 1000000000) + 1),
+                metadata: {
+                    custom_fields: [
+                        {
+                            display_name: "Company Name",
+                            variable_name: "company_name",
+                            value: name
+                        },
+                        {
+                            display_name: "Phone",
+                            variable_name: "phone",
+                            value: phone
+                        },
+                        {
+                            display_name: "Package",
+                            variable_name: "package",
+                            value: selectedPackage
+                        }
+                    ]
+                },
+                callback: function (response) {
+                    alert('Payment successful. Reference: ' + response.reference);
+
+                    // TODO: Send data to backend
+                    // Example: fetch("/store-booking", {method:"POST", body:JSON.stringify({name,email,phone,package:selectedPackage,amount:selectedPrice,ref:response.reference})})
+                },
+                onClose: function () {
+                    alert('Transaction was not completed.');
+                }
+            });
+            handler.openIframe();
+        }
+    </script>
+
+
+
+    <footer class="w3l-footer py-5">
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-lg-4 sub-one-left">
+                    <h6>About </h6>
+                    <p> NIPITECS was established in 2013 through a collaboration between the Pipeline
+                        Professionals
+                        Association of Nigeria (PLAN) and Energy Corporate Africa (ECA), a renowned US-based
+                        organizer
+                        of energy events. The goal was simple yet powerful: to position Nigeria and
+                        Sub-Saharan Africa
+                        on the global map for pipeline infrastructure, technology, and security investment.
+                    </p>
+                    <ul class="social mt-4 pt-lg-1">
+                        <li><a href="https://www.facebook.com/share/1BLYFQx51p/"><span
+                                    class="fab fa-facebook-f"></span></a></li>
+                        <li><a href="https://x.com/nipitecs"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCSr9hBhu5Ngy7fMem_n3ULA"><span
+                                    class="fa-brands fa-youtube"></span></a></li>
+                        <li><a href="https://instagram.com/planngco"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 col-md-6 mt-lg-0 mt-5 px-lg-5 sub-two-right">
+                    <h6>NIPITECS 2025</h6>
+                    <div class="footer-post">
+                        <ul>
+                            <li><a href="#post">Abuja Continental
+                                    Hotels, Nigeria</a></li>
+                            <li class="mx-2"><a href="#post">November 11 - 12 2025</a></li>
+                            <li><a href="register.html">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-lg-0 mt-5 sub-one-left">
+                    <h6>Contact </h6>
+                    <div class="column2">
+                        <div class="href1"><span class="fas fa-envelope-open"></span><a
+                                href="mailto:admin@nipitecs25.com">
+                                admin@nipitecs25.com
+                            </a>
+                        </div>
+                        <div class="href2 my-3"><span class="fas fa-phone-alt"></span><a
+                                href="tel:+2347061643086">+2347061643086</a>
+                        </div>
+                        <div>
+                            <p class="contact-para mb-3"><span class="fas fa-map-marker-alt"></span>Abuja
+                                Continental
+                                Hotels, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
+                <p>&copy; 2025 NIPITECS. All rights reserved | Design by <a href="https://build.harvoxx.com/">Build with
+                        Harvoxx</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
