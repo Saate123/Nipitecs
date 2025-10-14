@@ -62,6 +62,7 @@ Author URL: http://w3layouts.com
     .paper-form input[type="text"],
     .paper-form input[type="file"],
     .paper-form input[type="tel"],
+    .paper-form input[type="email"],
     .paper-form select {
       padding-left: 12px;
       border: none;
@@ -77,6 +78,7 @@ Author URL: http://w3layouts.com
     .paper-form input[type="text"]:focus,
     .paper-form input[type="file"]:focus,
     .paper-form input[type="tel"]:focus,
+    .paper-form input[type="email"]:focus,
     .paper-form select:focus {
       border-color: #4cafef;
       box-shadow: 0 0 6px rgba(76, 175, 239, 0.2);
@@ -111,6 +113,7 @@ Author URL: http://w3layouts.com
       .paper-form input[type="text"],
       .paper-form input[type="file"],
       .paper-form input[type="tel"],
+      .paper-form input [type="email"],
       .paper-form select {
         font-size: 14px;
         padding: 10px;
@@ -479,133 +482,100 @@ Author URL: http://w3layouts.com
       </div>
       <div class="container">
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your email.." required>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
       </div>
       <div class="container">
-        <select name="gender" required>
+        <select name="gender" id="gender" required>
           <option value="">Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
       </div>
       <div class="container">
-        <input type="file" id="email" name="email" placeholder="Your abstract.." required>
+        <label for="file">Abstract / Paper (PDF/DOCX)</label>
+        <input type="file" id="file" name="abstract" accept=".pdf,.doc,.docx" required>
       </div>
       <input type="submit" value="Submit">
     </form>
   </section>
 
-
-  <!-- 
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- Include Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const regType = document.getElementById("regType");
-    const regForm = document.getElementById("regForm");
-    const feeDisplay = document.getElementById("feeDisplay");
-    const idUpload = document.getElementById("idUploadField");
+    // ✅ Initialize Supabase Client
+    const supabaseUrl = 'https://vrooviudnnngeqrgigsd.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyb292aXVkbm5uZ2VxcmdpZ3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3MTQ5NzIsImV4cCI6MjA3NTI5MDk3Mn0.KIOtvQ4gSmUyPoTzXoPixSSgo9_i0NNpQl1aRz7ZM80'; // Replace with your Supabase anon key
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    const fees = {
-      regular: 32500,
-      student: 25000
-      // plan handled separately (50% discount during Paystack)
-    };
-
-    let planEmails = [
-      // ✅ Hardcoded fallback emails
-      "johndoe@example.com",
-      "janedoe@example.com",
-      "student1@school.edu",
-      "member123@gmail.com"
-    ].map(e => e.toLowerCase());
-
-    // Example: check if entered email is in plan list
-    function isPlanMember(email) {
-      return planEmails.includes(email.trim().toLowerCase());
-    }
-    regType.addEventListener("change", function () {
-      const type = this.value;
-
-      if (type === "sponsor") {
-        window.location.href = "sponsor.html";
-        return;
-      }
-      if (type === "exhibitor") {
-        window.location.href = "exhibitors.html";
-        return;
-      }
-
-      if (type) {
-        regForm.style.display = "block";
-
-        if (type === "regular" || type === "student") {
-          feeDisplay.style.display = "block";
-          feeDisplay.textContent = `Registration Fee: ₦${fees[type].toLocaleString()}`;
-        } else {
-          feeDisplay.style.display = "none"; // hide fee for plan
-        }
-
-        // Show ID upload for student & plan
-        if (type === "student") {
-          idUpload.style.display = "block";
-        } else {
-          idUpload.style.display = "none";
-        }
-
-      } else {
-        regForm.style.display = "none";
-        feeDisplay.style.display = "none";
-      }
-    });
-
-    // Handle form + payment
-    regForm.addEventListener("submit", function (e) {
+    // ✅ Handle form submission
+    document.getElementById('regForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const type = regType.value;
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      let amount = 0;
+      // Collect form data
+      const fname = document.getElementById('fname').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const gender = document.getElementById('gender').value.trim();
+      const fileInput = document.getElementById('file');
+      const file = fileInput.files[0];
 
-      if (type === "regular") {
-        amount = fees.regular * 100;
-      }
-      else if (type === "student") {
-        amount = fees.student * 100;
-      }
-      else if (type === "plan") {
-        // ✅ Validate plan member email before continuing
-        if (!planEmails.includes(email)) {
-          alert("This email is not recognized as a valid plan member.");
-          return;
-        }
-        amount = (fees.regular * 0.5) * 100; // 50% discount
+      if (!file) {
+        alert('Please select a file before submitting.');
+        return;
       }
 
-      // Save form data (replace with API call if needed)
-      const formData = {
-        firstName: document.getElementById("fname").value,
-        lastName: document.getElementById("lname").value,
-        email: email,
-        type: type
-      };
-      console.log("Form Data Saved:", formData);
+      // ✅ Upload the file to Supabase Storage (public bucket: "abstracts")
+      const filePath = `uploads/${Date.now()}_${file.name}`;
 
-      // Trigger Paystack
-      var handler = PaystackPop.setup({
-        key: 'pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63', // Replace with your Paystack public key
-        email: email,
-        amount: amount,
-        currency: "NGN",
-        callback: function (response) {
-          alert('Payment successful! Ref: ' + response.reference);
-        },
-        onClose: function () {
-          alert('Transaction was not completed.');
-        }
-      });
-      handler.openIframe();
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('abstracts')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (uploadError) {
+        console.error('❌ Error uploading file:', uploadError);
+        alert('File upload failed. Please try again.');
+        return;
+      }
+
+      console.log('✅ File uploaded:', uploadData);
+
+      // ✅ Get public URL for uploaded file
+      const { data: publicUrlData } = supabase.storage
+        .from('abstracts')
+        .getPublicUrl(filePath);
+
+      const fileUrl = publicUrlData.publicUrl;
+      console.log('📂 Public file URL:', fileUrl);
+
+      // ✅ Insert record into Supabase table "call-for-papers"
+      const { data, error } = await supabase
+        .from('call-for-papers')
+        .insert([
+          {
+            full_name: fname,
+            phone,
+            email,
+            gender,
+            abstract_url: fileUrl,
+          }
+        ]);
+
+      if (error) {
+        console.error('❌ Error submitting form:', error);
+        alert('There was a problem saving your submission. Please try again.');
+        return;
+      }
+
+      console.log('✅ Data inserted successfully:', data);
+      alert('🎉 Submission successful! Your abstract has been received.');
+      document.getElementById('regForm').reset();
     });
-  </script> -->
+  </script>
+
 
   <!-- footer -->
   <footer class="w3l-footer py-5">
@@ -663,7 +633,6 @@ Author URL: http://w3layouts.com
   </footer>
   <!-- //footer -->
 
-  <!-- Js scripts -->
   <!-- move top -->
   <button onclick="topFunction()" id="movetop" title="Go to top">
     <span class="fas fa-level-up-alt" aria-hidden="true"></span>
