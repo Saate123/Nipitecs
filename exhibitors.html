@@ -149,14 +149,10 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="exhibitors.html">Exhibitors</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="call-for-papers.html">Call for Papers</a>
+                        </li>
                     </ul>
-                    <form
-                        action="https://p.w3layouts.com/demos_new/template_demo/02-02-2022/workup-liberty-demo_Free/60229367/web/error.html"
-                        method="GET" class="d-flex search-header ms-lg-2">
-                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
-                            required>
-                        <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
                 </div>
                 <!-- toggle switch for light and dark theme -->
                 <div class="cont-ser-position">
@@ -297,75 +293,182 @@
 
     <!-- Paystack Inline Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Initialize Supabase
+        const supabaseUrl = 'https://vrooviudnnngeqrgigsd.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyb292aXVkbm5uZ2VxcmdpZ3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3MTQ5NzIsImV4cCI6MjA3NTI5MDk3Mn0.KIOtvQ4gSmUyPoTzXoPixSSgo9_i0NNpQl1aRz7ZM80'; // Replace with your Supabase anon key
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
+
     <script>
         let selectedPackage = "";
         let selectedPrice = "";
 
+        // 🔹 When user clicks "Book a Space"
         function openSponsorForm(level, price) {
             selectedPackage = level;
-            selectedPrice = price.replace(/[^0-9]/g, ""); // store as numbers only
-            document.getElementById('form-title').innerText = "Book: " + level;
-            document.getElementById('sponsor-form').style.display = 'flex';
+            selectedPrice = price.replace(/[^0-9]/g, ""); // extract only numbers
+            document.getElementById("form-title").innerText = "Book: " + level;
+            document.getElementById("sponsor-form").style.display = "flex";
         }
 
         function closeSponsorForm() {
-            document.getElementById('sponsor-form').style.display = 'none';
+            document.getElementById("sponsor-form").style.display = "none";
         }
 
-        function showPaymentOptions() {
+        // 🔹 When user fills the form and proceeds to payment
+        async function showPaymentOptions() {
             const form = document.querySelector("#sponsor-form form");
+            const name = form.querySelector('input[name="name"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const phone = form.querySelector('input[name="phone"]').value.trim();
 
-            const name = form.querySelector('input[name="name"]').value;
-            const email = form.querySelector('input[name="email"]').value;
-            const phone = form.querySelector('input[name="phone"]').value;
+            if (!name || !email || !phone) {
+                alert("Please fill in all fields.");
+                return;
+            }
 
-            // Pass details to Paystack
-            payWithPaystack(name, email, phone);
+            // Save exhibitor info globally
+            window.exhibitorData = {
+                name,
+                email,
+                phone,
+                package: selectedPackage,
+                amount: selectedPrice,
+            };
+
+            // Show payment modal
+            closeSponsorForm();
+            document.getElementById("payment-title").innerText = "Payment for " + selectedPackage;
+            document.getElementById("payment-price").innerText =
+                "Amount: ₦" + Number(selectedPrice).toLocaleString();
+            document.getElementById("payment-modal").style.display = "flex";
+        }
+
+        // 🔹 Handle Paystack payment and save to Supabase
+        async function payWithPaystack() {
+            const exhibitor = window.exhibitorData;
+            if (!exhibitor) {
+                alert("Please fill in the exhibitor form first.");
+                return;
+            }
+
+            const amountInKobo = parseInt(exhibitor.amount) * 100; // convert ₦ to kobo
+
+            let handler = PaystackPop.setup({
+                key: "pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63", // 🔹 Your Paystack public key
+                email: exhibitor.email,
+                amount: amountInKobo,
+                currency: "NGN",
+                ref: "NIPITECS_" + Math.floor(Math.random() * 1000000000 + 1),
+                metadata: {
+                    custom_fields: [
+                        { display_name: "Name", variable_name: "name", value: exhibitor.name },
+                        { display_name: "Phone", variable_name: "phone", value: exhibitor.phone },
+                        { display_name: "Package", variable_name: "package", value: exhibitor.package },
+                    ],
+                },
+                callback: function (response) {
+                    handlePaystackCallback(response, exhibitor);
+                },
+                onClose: function () {
+                    alert("Transaction was not completed, window closed.");
+                },
+            });
+
+            handler.openIframe();
         }
 
         function closePaymentModal() {
-            document.getElementById('payment-modal').style.display = 'none';
-        }
-
-        function payWithPaystack(name, email, phone) {
-            let handler = PaystackPop.setup({
-                key: 'pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63', // Replace with your public key
-                email: email,
-                amount: selectedPrice * 100, // Convert to kobo
-                currency: "NGN",
-                ref: 'NIPITECS-' + Math.floor((Math.random() * 1000000000) + 1),
-                metadata: {
-                    custom_fields: [
-                        {
-                            display_name: "Company Name",
-                            variable_name: "company_name",
-                            value: name
-                        },
-                        {
-                            display_name: "Phone",
-                            variable_name: "phone",
-                            value: phone
-                        },
-                        {
-                            display_name: "Package",
-                            variable_name: "package",
-                            value: selectedPackage
-                        }
-                    ]
-                },
-                callback: function (response) {
-                    alert('Payment successful. Reference: ' + response.reference);
-
-                    // TODO: Send data to backend
-                    // Example: fetch("/store-booking", {method:"POST", body:JSON.stringify({name,email,phone,package:selectedPackage,amount:selectedPrice,ref:response.reference})})
-                },
-                onClose: function () {
-                    alert('Transaction was not completed.');
-                }
-            });
-            handler.openIframe();
+            document.getElementById("payment-modal").style.display = "none";
         }
     </script>
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                // Handle Paystack callback logic in a separate async function
+                async function handlePaystackCallback(response, exhibitor) {
+                    alert("✅ Payment successful! Reference: " + response.reference);
+
+                    // ✅ Save record to Supabase (in the shared "sponsors" table)
+                    try {
+                        const { data, error } = await supabase
+                            .from("sponsors")
+                            .insert([
+                                {
+                                    name: exhibitor.name,
+                                    email: exhibitor.email,
+                                    phone_number: exhibitor.phone,
+                                    package: exhibitor.package,
+                                    amount: exhibitor.amount,
+                                    type: "exhibitor", // ✅ Add this field to distinguish from sponsors
+                                    payment_reference: response.reference,
+                                    paid: true,
+                                },
+                            ]);
+
+                        if (error) {
+                            console.error("❌ Supabase insert error:", error);
+                            alert("Error saving to database: " + error.message);
+                        } else {
+                            console.log("✅ Saved to Supabase:", data);
+                        }
+                    } catch (err) {
+                        console.error("Unexpected error:", err);
+                        alert("An unexpected error occurred. Please try again.");
+                    }
+
+                    closePaymentModal();
+                }
+
+                function closePaymentModal() {
+                    document.getElementById("payment-modal").style.display = "none";
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'980a65d728dced9e',t:'MTc1ODEzMDkyMg=='};var a=document.createElement('script');a.src='../../../../../../cdn-cgi/challenge-platform/h/g/scripts/jsd/f78657f80e4b/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 
 
 

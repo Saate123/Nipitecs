@@ -167,14 +167,10 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link" href="exhibitors.html">Exhibitors</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="call-for-papers.html">Call for Papers</a>
+                        </li>
                     </ul>
-                    <form
-                        action="https://p.w3layouts.com/demos_new/template_demo/02-02-2022/workup-liberty-demo_Free/60229367/web/error.html"
-                        method="GET" class="d-flex search-header ms-lg-2">
-                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
-                            required>
-                        <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
                 </div>
                 <!-- toggle switch for light and dark theme -->
                 <div class="cont-ser-position">
@@ -251,21 +247,29 @@ Author URL: http://w3layouts.com
                 </select>
             </div>
             <div class="container">
-                <select name="state" required>
-                    <option value="">State of residence</option>
-                    <option value="lagos">Lagos</option>
-                    <option value="abuja">Abuja</option>
-                    <option value="rivers">Rivers</option>
-                    <option value="kano">Kano</option>
-                    <option value="ogun">Ogun</option>
-                    <option value="oyo">Oyo</option>
-                    <option value="edo">Edo</option>
-                    <option value="delta">Delta</option>
-                    <option value="enugu">Enugu</option>
-                    <option value="anambra">Anambra</option>
-                    <option value="akwa-ibom">Akwa Ibom</option>
+                <select id="state" name="state" required>
+                    <option value="">Select State of Residence</option>
                 </select>
             </div>
+
+            <script>
+                const states = [
+                    "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+                    "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa",
+                    "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger",
+                    "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe",
+                    "Zamfara", "FCT (Abuja)"
+                ];
+
+                const select = document.getElementById("state");
+                states.forEach(state => {
+                    const option = document.createElement("option");
+                    option.value = state.toLowerCase().replace(/\s+/g, "-");
+                    option.textContent = state;
+                    select.appendChild(option);
+                });
+            </script>
+
 
             <!-- Hidden ID Upload Field -->
             <div class="container" id="idUploadField" style="display: none; margin-bottom: 20px;">
@@ -283,7 +287,7 @@ Author URL: http://w3layouts.com
         const regType = document.getElementById("regType");
         const regForm = document.getElementById("regForm");
         const feeDisplay = document.getElementById("feeDisplay");
-        const idUpload = document.getElementById("idUpload");
+        const idUpload = document.getElementById("idUploadField");
 
         const fees = {
             regular: 32500,

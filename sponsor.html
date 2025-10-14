@@ -168,14 +168,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="exhibitors.html">Exhibitors</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="call-for-papers.html">Call for Papers</a>
+                        </li>
                     </ul>
-                    <form
-                        action="https://p.w3layouts.com/demos_new/template_demo/02-02-2022/workup-liberty-demo_Free/60229367/web/error.html"
-                        method="GET" class="d-flex search-header ms-lg-2">
-                        <input class="form-control" type="search" placeholder="Enter Keyword..." aria-label="Search"
-                            required>
-                        <button class="btn btn-style" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
                 </div>
                 <!-- toggle switch for light and dark theme -->
                 <div class="cont-ser-position">
@@ -336,11 +332,11 @@
             <form onsubmit="event.preventDefault(); showPaymentOptions();">
                 <div style="margin-top:15px;">
                     <input type="text" name="name" placeholder="Company Name" required
-                        style="width:100%; margin-bottom:10px; padding:8px;">
+                        style="width:100%; margin-bottom:20px; padding:8px; border: none; border-bottom: 2px solid #ccc; border-radius: 5px;">
                     <input type="email" name="email" placeholder="Email" required
-                        style="width:100%; margin-bottom:10px; padding:8px;">
+                        style="width:100%; margin-bottom:20px; padding:8px; border: none; border-bottom: 2px solid #ccc; border-radius: 5px;">
                     <input type="text" name="phone" placeholder="Phone" required
-                        style="width:100%; margin-bottom:10px; padding:8px;">
+                        style="width:100%; margin-bottom:20px; padding:8px;border: none; border-bottom: 2px solid #ccc; border-radius: 5px;">
                 </div>
                 <button type="submit" class="btn btn-style" style="width:100%; margin-top:10px;">Proceed</button>
             </form>
@@ -360,6 +356,15 @@
     </div>
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Initialize Supabase
+        const supabaseUrl = 'https://vrooviudnnngeqrgigsd.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyb292aXVkbm5uZ2VxcmdpZ3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3MTQ5NzIsImV4cCI6MjA3NTI5MDk3Mn0.KIOtvQ4gSmUyPoTzXoPixSSgo9_i0NNpQl1aRz7ZM80'; // Replace with your Supabase anon key
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
+
     <script>
         let selectedPackage = "";
         let selectedPrice = "";
@@ -367,31 +372,39 @@
         function openSponsorForm(level, price) {
             selectedPackage = level;
             selectedPrice = price;
-            document.getElementById('form-title').innerText = "Sponsor as " + level;
-            document.getElementById('sponsor-form').style.display = 'flex';
+            document.getElementById("form-title").innerText = "Sponsor as " + level;
+            document.getElementById("sponsor-form").style.display = "flex";
         }
 
         function closeSponsorForm() {
-            document.getElementById('sponsor-form').style.display = 'none';
+            document.getElementById("sponsor-form").style.display = "none";
         }
 
-        function showPaymentOptions() {
+        async function showPaymentOptions() {
             const form = document.querySelector("#sponsor-form form");
-            const name = form.querySelector('input[name="name"]').value;
-            const email = form.querySelector('input[name="email"]').value;
-            const phone = form.querySelector('input[name="phone"]').value;
+            const name = form.querySelector('input[name="name"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const phone = form.querySelector('input[name="phone"]').value.trim();
 
-            // Save user info in a global object
-            window.sponsorData = { name, email, phone, selectedPackage, selectedPrice };
+            if (!name || !email || !phone) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            window.sponsorData = {
+                name,
+                email,
+                phone,
+                package: selectedPackage,
+                amount: selectedPrice,
+            };
 
             closeSponsorForm();
-            document.getElementById('payment-title').innerText = "Payment for " + selectedPackage;
-            document.getElementById('payment-price').innerText = "Amount: " + selectedPrice;
-            document.getElementById('payment-modal').style.display = 'flex';
-        }
-
-        function closePaymentModal() {
-            document.getElementById('payment-modal').style.display = 'none';
+            document.getElementById("payment-title").innerText =
+                "Payment for " + selectedPackage;
+            document.getElementById("payment-price").innerText =
+                "Amount: " + selectedPrice;
+            document.getElementById("payment-modal").style.display = "flex";
         }
 
         function payWithPaystack() {
@@ -401,58 +414,138 @@
                 return;
             }
 
-            // Convert ₦ to kobo (Paystack requires amount in kobo)
-            const amountInKobo = parseInt(sponsor.selectedPrice.replace(/[₦,]/g, '')) * 100;
+            // Ensure Paystack script has loaded
+            if (typeof window.PaystackPop === "undefined" || typeof window.PaystackPop.setup !== "function") {
+                alert("Paystack library not loaded. Please refresh and try again.");
+                return;
+            }
 
-            let handler = PaystackPop.setup({
-                key: 'pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63', // Replace with your Paystack public key
-                email: sponsor.email,
-                amount: amountInKobo,
-                currency: "NGN",
-                ref: 'NIPITECS_' + Math.floor((Math.random() * 1000000000) + 1),
-                metadata: {
-                    custom_fields: [
-                        {
-                            display_name: "Name",
-                            variable_name: "name",
-                            value: sponsor.name
-                        },
-                        {
-                            display_name: "Phone",
-                            variable_name: "phone",
-                            value: sponsor.phone
-                        },
-                        {
-                            display_name: "Package",
-                            variable_name: "package",
-                            value: sponsor.selectedPackage
-                        }
-                    ]
-                },
-                callback: function (response) {
-                    alert('Payment successful! Reference: ' + response.reference);
+            // Convert ₦ to kobo
+            const amountInKobo = parseInt(sponsor.amount.replace(/[₦,]/g, "")) * 100;
 
-                    // Save data locally (optional: send to server via fetch/AJAX)
-                    console.log("Sponsor data:", sponsor);
-                    console.log("Paystack ref:", response.reference);
+            try {
+                const handler = window.PaystackPop.setup({
+                    key: "pk_live_3f80891be3cbc71cfd8b3fde196f3c6bc642db63", // Replace with your Paystack public key
+                    email: sponsor.email,
+                    amount: amountInKobo,
+                    currency: "NGN",
+                    ref: "NIPITECS_" + Math.floor(Math.random() * 1000000000 + 1),
+                    metadata: {
+                        custom_fields: [
+                            { display_name: "Name", variable_name: "name", value: sponsor.name },
+                            { display_name: "Phone", variable_name: "phone", value: sponsor.phone },
+                            {
+                                display_name: "Package",
+                                variable_name: "package",
+                                value: sponsor.package,
+                            },
+                        ],
+                    },
+                    callback: function (response) {
+                        // ✅ Ensure callback is a valid function
+                        (async function handlePaymentSuccess() {
+                            alert("✅ Payment successful! Reference: " + response.reference);
+                            console.log("Sponsor data:", sponsor);
+                            console.log("Paystack ref:", response.reference);
 
-                    // Example: send to server
-                    /*
-                    fetch("/save-sponsor", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ ...sponsor, reference: response.reference })
-                    })
-                    */
-                    closePaymentModal();
-                },
-                onClose: function () {
-                    alert('Transaction was not completed, window closed.');
-                }
-            });
-            handler.openIframe();
+                            try {
+                                const { data, error } = await supabase
+                                    .from("sponsors")
+                                    .insert([
+                                        {
+                                            name: sponsor.name,
+                                            email: sponsor.email,
+                                            phone_number: sponsor.phone,
+                                            package: sponsor.package,
+                                            amount: sponsor.amount,
+                                            payment_reference: response.reference,
+                                            paid: true,
+                                        },
+                                    ]);
+
+                                if (error) {
+                                    console.error("❌ Supabase insert error:", error);
+                                    alert("Error saving to database: " + error.message);
+                                } else {
+                                    console.log("✅ Saved to Supabase:", data);
+                                }
+                            } catch (err) {
+                                console.error("Unexpected error:", err);
+                                alert("An unexpected error occurred. Please try again.");
+                            }
+
+                            closePaymentModal();
+                        })();
+                    },
+                    onClose: function () {
+                        alert("Transaction was not completed, window closed.");
+                    },
+                });
+
+                handler.openIframe();
+            } catch (err) {
+                console.error("Paystack setup error:", err);
+                alert("An error occurred initializing Paystack. Please try again.");
+            }
+        }
+
+        function closePaymentModal() {
+            document.getElementById("payment-modal").style.display = "none";
         }
     </script>
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- jQuery (required for scripts below) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'980a65d728dced9e',t:'MTc1ODEzMDkyMg=='};var a=document.createElement('script');a.src='../../../../../../cdn-cgi/challenge-platform/h/g/scripts/jsd/f78657f80e4b/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+
 
 
     <!-- footer -->
