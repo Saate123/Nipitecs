@@ -19591,6 +19591,10 @@ h4.number {
   background: var(--bg-lightgrey);
 }
 
+.w3l-homeblock3 .top-pic {
+  background: url(../images/attah.jpg) no-repeat 0px 0px;
+}
+
 .w3l-homeblock3 .top-pic1 {
   background: url(../images/Picture1.png) no-repeat 0px 0px;
 }
@@ -19609,7 +19613,7 @@ h4.number {
   background: url(../images/speaker.jpg) no-repeat 0px 0px;
 }
 .w3l-homeblock3 .top-pic6 {
-  background: url(../images/speaker2.jpg) no-repeat 0px 0px;
+  background: url(../images/vincent.jpg) no-repeat 0px 0px;
 }
 .w3l-homeblock3 .top-pic7 {
   background: url(../images/gallery12.jpg) no-repeat 0px 0px;
@@ -19638,7 +19642,11 @@ h4.number {
 .w3l-homeblock3 .top-pic15 {
   background: url(../images/gallery16.jpg) no-repeat 0px 0px;
 }
+.w3l-homeblock3 .top-pic16 {
+  background: url(../images/engnr.jpg) no-repeat 0px 0px;
+}
 
+.w3l-homeblock3 .top-pic,
 .w3l-homeblock3 .top-pic1,
 .w3l-homeblock3 .top-pic2,
 .w3l-homeblock3 .top-pic3,
@@ -19653,7 +19661,8 @@ h4.number {
 .w3l-homeblock3 .top-pic12,
 .w3l-homeblock3 .top-pic13,
 .w3l-homeblock3 .top-pic14,
-.w3l-homeblock3 .top-pic15 {
+.w3l-homeblock3 .top-pic15,
+.w3l-homeblock3 .top-pic16 {
   background-size: cover;
   padding: 20px;
   border-radius: var(--border-radius);
@@ -19669,12 +19678,14 @@ h4.number {
   -o-transition: 0.3s ease;
 }
 
+.w3l-homeblock3 .top-pic:hover,
 .w3l-homeblock3 .top-pic1:hover,
 .w3l-homeblock3 .top-pic2:hover,
 .w3l-homeblock3 .top-pic3:hover,
 .w3l-homeblock3 .top-pic4:hover,
 .w3l-homeblock3 .top-pic5:hover,
-.w3l-homeblock3 .top-pic6:hover {
+.w3l-homeblock3 .top-pic6:hover,
+.w3l-homeblock3 .top-pic16:hover {
   transform: translateY(-0.25rem);
   box-shadow: rgba(46, 41, 51, 0.08) 0px 2px 4px,
     rgba(71, 63, 79, 0.16) 0px 5px 10px;
@@ -19697,6 +19708,7 @@ h4.number {
 }
 
 @media (max-width: 1080px) {
+  .w3l-homeblock3 .top-pic,
   .w3l-homeblock3 .top-pic1,
   .w3l-homeblock3 .top-pic2,
   .w3l-homeblock3 .top-pic3,
