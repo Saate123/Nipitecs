@@ -19643,13 +19643,16 @@ h4.number {
   background: url(../images/gallery16.jpg) no-repeat 0px 0px;
 }
 .w3l-homeblock3 .top-pic16 {
-  background: url(../images/engnr.jpg) no-repeat 0px 0px;
+  background: url(../images/engnr.jpg) no-repeat 0px 0px; /* Changed position to center */
 }
 .w3l-homeblock3 .top-pic17 {
   background: url(../images/Daniel.jpg) no-repeat 0px 0px;
 }
 .w3l-homeblock3 .top-pic18 {
   background: url(../images/robin.jpg) no-repeat 0px 0px;
+}
+.w3l-homeblock3 .top-pic19 {
+  background: url(../images/rev.jpg) no-repeat 0px 0px;
 }
 
 .w3l-homeblock3 .top-pic,
@@ -19670,7 +19673,8 @@ h4.number {
 .w3l-homeblock3 .top-pic15,
 .w3l-homeblock3 .top-pic16,
 .w3l-homeblock3 .top-pic17,
-.w3l-homeblock3 .top-pic18 {
+.w3l-homeblock3 .top-pic18,
+.w3l-homeblock3 .top-pic19 {
   background-size: cover;
   padding: 20px;
   border-radius: var(--border-radius);
@@ -19695,7 +19699,8 @@ h4.number {
 .w3l-homeblock3 .top-pic6:hover,
 .w3l-homeblock3 .top-pic16:hover,
 .w3l-homeblock3 .top-pic17:hover,
-.w3l-homeblock3 .top-pic18:hover{
+.w3l-homeblock3 .top-pic18:hover,
+.w3l-homeblock3 .top-pic19:hover {
   transform: translateY(-0.25rem);
   box-shadow: rgba(46, 41, 51, 0.08) 0px 2px 4px,
     rgba(71, 63, 79, 0.16) 0px 5px 10px;

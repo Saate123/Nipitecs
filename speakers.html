@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speakers - NIPITECS2025</title>
+  <link href="http://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <!-- Template CSS Style link -->
+  <link rel="stylesheet" href="assets/css/style-liberty.css">
+  <link rel="stylesheet" href="assets/lib/fontawesome-free-6.7.2-web/css/all.min.css">
+  <style>
+    /* Basic styling for the content box (adjust this based on your main site CSS) */
+    .speaker-profile-container {
+      max-width: 800px;
+      margin: 10% auto;
+      padding: 30px;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .speaker-profile-container img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 5px solid #007bff;
+      /* Example border color */
+    }
+
+    .speaker-profile-container h1 {
+      font-size: 2em;
+      color: black;
+      margin-bottom: 5px;
+    }
+
+    .speaker-profile-container h2 {
+      font-size: 1.5em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .speaker-profile-container p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: black;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    /* .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .back-link:hover {
+      background-color: #0056b3;
+    } */
+  </style>
+</head>
+
+<body>
+  <header id="site-header" class="fixed-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html">
+          <i class="fa-solid fa-n" aria-colcount="true"></i> ipitecs
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+          <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="sponsor.html">Sponsors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="exhibitors.html">Exhibitors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="call-for-papers.html">Call for Papers</a>
+            </li>
+          </ul>
+        </div>
+        <!-- toggle switch for light and dark theme -->
+        <div class="cont-ser-position">
+          <nav class="navigation">
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox">
+                <div class="mode-container">
+                  <i class="gg-sun"></i>
+                  <i class="gg-moon"></i>
+                </div>
+              </label>
+            </div>
+          </nav>
+        </div>
+        <!-- //toggle switch for light and dark theme -->
+      </nav>
+    </div>
+  </header>
+  <section class="speaker-profile-container" id="profileContent">
+    <h1>Loading Speaker Profile...</h1>
+    <p>If this page does not load, the speaker ID may be invalid.</p>
+  </section>
+
+  <script>
+    // ✅ The master data object must be included here on the target page
+    const speakers = {
+      "fadare": {
+        name: "Engr. Akintunde Fadare",
+        position: "Chief Operating Officer (OFS), Geoplex Drillteq Limited",
+        intro: "Engr. Akintunde Fadare is the Executive Director and Chief Operating Officer of Geoplex Drillteq Limited and has over 21 years of experience in the oil industry working for Baker Hughes, Welltec and now Geoplex. Engr. Akintunde is a strong collaborative and focused player with a lot of expertise and competency in project management, business management, data business analyst, reliability and technical support, geoscience, well-work, customer service, marketing, sales, and human resources.",
+        intro1: "He started his career in Baker Hughes as a general field engineer and rose over the years to Product Line Manager (East, South, West and Central African Countries Geo market).",
+        intro2: "He has a master’s degree in Business Administration from Edinburgh Business School (Heriot-Watt University). Bachelor’s degree in Electrical and Electronics Engineering from University of Ilorin, and Post Graduate Degree in Data and Business Analytics from University of Texas Austin.",
+        intro3: "Akin is Happily Married and blessed with two (2) Children.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/Picture1.png"
+      },
+      "onuoha": {
+        name: "Engr. Geoff Onuoha",
+        position: "Chairman & Founder, B.G. Technical Ltd & Affiliates",
+        intro: "Chairman & founder, B.G. Technical Ltd & Affiliates; President, Qinline Integrity Services, USA; Chairman, Pipeline Pigging Products & Accessories. PPA Ltd; Chairman & Co-founder, Pipeline Professionals Association of Nigeria.",
+        intro1: "Successful Oil and gas professional, with over 35 years of international operations, management and executive experience in the oil and gas industry. Chairman/Director (and co-founder) of active and successful businesses in the oil & gas Industry with international operations. Having over thirty-five years of domestic and international experience in the petroleum industry. A seasoned international business executive and strategist, who has held senior positions in well reputed International Services Conglomerate (Schlumberger Overseas SA) in Europe (France & Italy), North America/USA and Africa, who is also well versed in the intricacies and operation of the services delivery segment of the Oil and Gas industry. Inventor and developer of engineering products and systems.",
+        intro2: "B.G. TECHNICAL and subsidiaries/affiliates: 2001 To Present: President/ CEO in charge of management, operational and growth strategies for the company and affiliates.Has supervised the growth of the business and its affiliates from an unknown small sub- contractor to a major provider of pipeline Inline Inspection and other services to the large oil & gas multinationals including Chevron, Exxon, Shell, Total Energies and more. PPA is the only manufacturer of pipeline cleaning pigs in Nigeria and in Africa. Linalog Services, a subsidiary of BGT is the only Original Equipment Manufacturer (OEM) in intelligent pipeline inspection and integrity assurance in Africa.",
+        intro3: "SCHLUMBERGER INTNL: 1987 to Sept. 2001. USA Gulf Coast, Geo-market Manager, Schlumberger Data Services in charge of multiple locations in Houston; Dairy Ashford & San Felipe; New Orleans; Lafayette, Dallas, and also in-charge of Schlumberger data services for USA multinationals working in West Africa and Russia (Sakhalin Region).  Was also in-charge of Borehole Seismic processing for North America. Held various international positions in Schlumberger international services including Field Services Manager in France, District Manager in West Africa and Training Instructor in Italy",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/Picture2.png"
+      },
+      "usman": {
+        name: "ENGR. Yusuf Usman",
+        position: "GED/Chief Operating Officer, G&P, NNPC (2021)",
+        intro: "<strong>Major Achievements (2019 to 2021):</strong> COO Gas & Power: Led the Gas & Power Autonomous Business Unit (NGC, NGMC, GPIC and LIMS) to generate the highest revenue for NNPC in year 2020. Chairman Domestic Gas Sector Wide Pricing Committee and Chairman Decate of Gas Master Plan. Led the team to deliver the latest domestic gas pricing document. Organized shareholders to take Final Investment Decision (FID) for NLNG Train 7 project as proxy director and Chairman of Shareholders Committee of NLNG. Started the execution of AKK, ordered the entire line pipe requirement and delivered 30km of construction activities. Chairman of Brass Fertilizer and petrochemical company, led the company to FID of two (2) methanol plant and 300MMscfd CPF. Chairman of Assa North Ohaji Gas Processing Company, secured funding of $250 million and achieved 60% plant completion. Chairman of West African Gas Pipeline Project, lifted force mejeur clause and restored foundation volume contracts and recovered $40million debt owed to Ghana for gas supplied. Chairman of the SEEPCO 120MMSCFD gas processing Facility, delivered the plant within time and budget supplying gas for the commissioning of OB3 gas pipeline and enhanced gas supply to domestic market. Completed Escravos to Lagos pipeline looping project and attained 80% commissioning of OB3 gas pipeline project.",
+        intro1: "<strong>Major Achievements (2011 to 2019):</strong>Provided Technical Advisory and managed the office of the GMD as Senior Technical Assistant (2016 to 2019). Developed GMD’s document for briefing Mr. Presidential, Vice President and other key stakeholders. Key figure in the development of the 12 Business Focus Areas (BUFA) of the GMD NNPC, driving the mission and strategy of NNPC from 2016 to 2019. Anchored high profile bilateral engagements and Memorandum of Understanding with Qatari Investors (Al- Mirqab Group for Operatorship of OML 30 & Power Plants) and Moroccan Investors as part of Presidential fertilizer Initiative of Government to drive the development of Nigeria-Morocco Gas Pipelines. Project Manager of complex first of its kind projects such as; the 48” x 130km OB3 Gas Pipeline Project with about 2km River Niger Crossing and application of Horizontal Directional Drilling (HDD) Technology; the 120,000 barrels per day giant Usan Floating Production, Storage and Offloading (FPSO) facility, currently in production as well as Oil and Gas Offshore production facilities that deployed state of the art float over technology for the first time in Nigeria (Ekpe Gas Compression Platform). Employed and trained eighteen (18) young engineers under the OB3 gas pipeline in 2011.",
+        intro2: "<strong>Major Achievements (2006 to 2011):</strong> Served in the Energy Working Group as NNPC/MPR team lead, for the development of National Integrated Infrastructure Master Plan (NIIMP) for the country. This document has been approved by the Federal Executive Council and is currently being used for National Planning. Successfully managed interface coordination as Interface Manager for the execution of pre-FEED of the 2,400MMscfd West Niger Delta (WEND) Central Gas Processing Facility and pipelines as part of the Delta State Gas City. Served in the Inter-Ministerial Committee on emergency gas supply to power that identified about 225 MMscfd of gas that improved gas supply in the early part of the 2011. The committee also recommended long term prospects that were developed that resolved the deficiency in gas supply. Worked with Foreign Affairs Ministry to develop the speech of Mr. President that was delivered by the Vice President in the first gas summit of the Gas Exporting Country Forum in Dohar, Qatar on policy direction of Nigeria in gas. This speech was adjudged as one of the best paper presented at the summit. Saved about $20 million dollars for the corporation through direct negotiation of the EPC of Ekpe Gas Compression contracts in 2006.",
+        intro3: "<strong>Leadership/Awards:</strong> Chairman of Board of Directors of RanoAccrete (2022) WAPCo, AGPC, Ashtavinayak, Quintiles Oil & Gas, Kwale Genco, Brass Fertilizer & Petrochem. GMD’s award of distinction as overall best in 2009 Chief Officers Development Programme Course 055. Certificate of distinction as best Individual Project, 1st Runner up in leadership and effective presentation all at the Management Development Course in 2009. GMD’s Merit Award 2004/5 as best performing staff in the Lagos Zone. <strong>Fellow: Nigerian Society of Engineers (NSE) and Nigerian Society of chemical Engineers (NSChE)</strong>",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/Picture3.png"
+      },
+      "okwuosa": {
+        name: "Engr. Emeka Okwuosa (CON)",
+        position: "Group Chief Executive Officer, Oilserv Group",
+        intro: "Engr. Dr. Emeka Okwuosa, CON, Group Chief Executive Officer, Oilserv Group, is a seasoned engineer, administrator, entrepreneur and visionary leader born in 1961 in Jos, Nigeria. In 1982, Engr. Okwuosa graduated from the then University of Ife (now Obafemi Awolowo University), Osun State, Nigeria with a degree in Electronic and Electrical Engineering. Since then he has made a significant impact in various fields, including engineering, entrepreneurship, administration and philanthropy. With over 40 years in the oil and gas sector, he has vast experience in different fields of engineering including maintenance and operations, teaching, wireline logging and interpretation, seismic acquisition, processing and interpretation, procurement and construction, EPC, project management, drilling and drilling service. During his career, he has worked across Europe, North Africa, West Africa, Gulf/Central Africa and Indonesia in positions ranging from Field Engineer to Technical Manager. Engr. Okwuosa's experience is not limited to the oil and gas industry. He started his career as a management trainee (engineering) with the Nigerian Breweries Limited before joining Schlumberger Energy Services as a field engineer a year after. He worked with Schlumberger as an international staff in different parts of the world and held various positions in Schlumberger, including base manager, equipment/tool test coordinator and technical manager.",
+        intro1: "Engr. Okwuosa is the founder and Chairman of Oilserv Limited, Frazimex Engineering Limited, FrazPower Limited, FrazEnergy Limited, FrazOil E&P Limited, Ekcel Farms Limited, EnviFraz Limited and Crown Energy Resources Ltd. His flagship Company; Oilserv, is Nigeria's EPC giant that has been delivering turnkey projects using top notch quality and safety standards since inception. The company is currently constructing the 40-inch x 615km AKK Gas Transmission Pipeline, having recently commissioned the 48-inch x 127km OB/OB-OBEN Gas Transmission Pipeline (OB3 LOT B Project), the largest pipeline in Nigeria with the associated Gas Treatment Plant (GTP) which is the largest of its type (capacity of 2 billion scf/day) for the Nigerian National Petroleum Company (NNPC). Engr. Okwuosa is passionate about developing human capacity in high technology areas of the Oil and Gas Industry. This is achieved via various schemes that have been instituted through the companies and his Foundation. Together with other key practitioners in the Oil and Gas Engineering, Exploration and Production sectors, Engr. Okwuosa contributed to the enactment of Nigerian Oil and Gas Local Content Law, which was adapted by the Nigerian government in 2010. This Law has helped to institutionalize the development of sustainable local capacity in the Oil & Gas industry. ",
+        intro2: "<strong>He is a registered member of COREN (Council for the Regulation of Engineering) and belongs to the following local and international Professional bodies:</strong> The Institute of Electrical and Electronics Engineers (IEEE), Society of Professional Well Log Analysts (SPWLA), Pipeline Professional Association of Nigeria(PLAN), Petroleum Technology Association of Nigeria <strong>(PETAN, Nigeria Society of Engineers (NSE) - Fellow)</strong>, Society of Petroleum Engineers(SPE), Nigerian Gas Association(NGA), Institute of Directors(IoD) - <strong>Fellow</strong>. In addition to the awards of Honorary Doctorate Degree in Engineering (D.Eng) by Enugu State University of Technology (ESUT) and Honorary Doctorate Degree in Business Administration by University of Nigeria Nsukka (UNN) in 2016 for his exceptional leadership, integrity and dedication to duty.",
+        intro3: "<strong>Engr. Okwuosa has won several other awards, namely:</strong> US Africa International Oil & Gas Leadership Award, Best of Africa 2013, Lifetime Achievement Award by Petroleum Technology Association of Nigeria (PETΑΝ) – 2015, Award of Excellence by the Nanotechnology Research Group of the Physics Department, University of Nigeria Nsukka in 2014, 2016, 2018 and 2021, Nigeria Advancement Award for Creativity and Enterprise - 2016, International Socrates Award (UK) - 2016, Award of Excellence by Nigerian Gas Association (NGA) - 2016, PETAN Corporate Social Responsibility Award - 2016, PETAN Capacity Development Award - 2016, Industrialist of the Year Award-2016, Agro Entrepreneur of the Year Award - 2016, Award of excellence in Engineering, Association of Anambra State Development Union - 2017, Award of excellence in Engineering, Nigerian Institution of Highway & Transportation Engineers - 2017, Oil & Gas Organization of the Year Award by African Entrepreneurs Foundation - 2017, National Productivity Order of Merit Award (NPOM) by President Muhammadu Buhari - 2017, Investor of the Year Award by SUN Newspaper 2017, OTC/PETAN) Offshore Technology Conference/Petroleum Technology Association) Awards of Excellence in 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2017, 2018 and 2019 (in Houston, Texas),Best Partner Award by the Ministry of Mines and Water/SEMICA, Republic of Benin, 2018, Distinguished Anambra State Commander Medal, 2022, Commander of the Order of the Niger(CON), Federal Republic of Nigeria, 2022.<br> Engr. Okwuosa is the founder of the Sir Emeka Okwuosa Foundation, which focuses on programs that sustainably impact the lives of people in communities across Nigeria and are strategically aligned with the United Nations Sustainable Development Goals (SDGs). This ethos has seen the Foundation invest in Healthcare, Education and Socio-Economic Empowerment initiatives for over a decade. The Foundation has marked several milestones, including the completion of a multi-billion Naira specialist hospital (Dame Irene Okwuosa Memorial Hospital) and a 600-student girls' school (Dame Irene Okwuosa Memorial Convent) in Oraifite, Anambra State.<br>Engr. Okwuosa has contributed immensely to improving the lives of Africans through his business and continues to support over 2,000 staff and contractors through the Oilserv Group and the Sir Emeka Okwuosa Foundation.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/Chairman.png"
+      },
+      "agubata": {
+        name: "ENGR. Felicia Nnenna Agubata",
+        position: "Ph.D, FNSE",
+        intro: "Engr. Dr. Felicia Nnenna AGUBATA was born in Enugwu – Ukwu, Njikoka LGA of Anambra State. A product  of Enugu State University of Science and Technology , she holds a  B. Eng. in Computer Science & Engineering (Second Class Upper Division 1997) and a Master’s degree in Electrical & Electronics Engineering (Distinction) as well as a doctorate degree in Electrical and Electronics Engineering (Communication Engineering option) .On completion of her National Youth Service Corps assignment at Innovative Systems Limited in 1999, she started work as a Sales Engineer at Compluleb Nigeria Limited in 2001.<br> Engr. Dr. Agubata’s  career in the Aviation sector commenced in 2002 upon joining the Nigerian Airspace Management Agency, NAMA (an Air Navigation Service Provider, ANSP) responsible for managing the Nigerian Airspace through the Provision, Installation and Maintenance of Navigational Aids, Communication Equipment and Surveillance Systems), as an Electrical Engineer II and has served in various capacities including  Special Project Officer(SPO) for the rehabilitation of thirteen (13)  Control Towers in Nigeria , Coordinator Project Management Office (CPMO) charged with the  responsibility for managing all the agency’s projects by ensuring that projects are delivered faster, and within budget. She was in the team that saw to the successful completion of the celebrated Controller Pilot Data Link (CPDLC) in record time.",
+        intro1: "Dr.  Agubata’s skills and work ethics have earned her three letters of commendation from two different Managing Directors of the Agency.  She was also a recipient of two Aviation Scholarships in 2007 (Women in Aviation Scholarship by Pratt and Whitney) and 2010 IAWA/ICAO (International Aviation Women Association/International Civil Aviation Organization) Scholarship being the only African among the ICAO five in 2010. She was privileged to work as an intern, at Air Navigation Bureau (ANB), ICAO Headquarters in Montreal Canada in 2010. Agubata is a 2019 and 2022 Royal Academy of Engineering GCRF African catalyst phase 3 and phase 4 Grant Awardee. She currently holds the Air Traffic Safety Electronics Personnel License and Rating (ATSEP) from the Nigerian Civil Aviation Authority NCAA. She is presently a Deputy General Manager and Head of Terrestrial Services at the Murtala Mohammed International Airport, Ikeja Lagos.<br><strong>A fellow of the Nigerian Society of Engineers (NSE)</strong>, Dr. Agubata is the <strong>Vice President Corporate Services of the Nigerian Society of Engineers and Chairman of the NSE Editorial Board(2022-date)</strong>. She is the <strong>15th President of Association of Professional Women Engineers of Nigeria (APWEN)</strong>, past Council Member of Council for Regulation of Engineering in Nigeria (COREN), former member Technical Board of Directors of Prototype Engineering Development institute ( PEDI), Ilesha, Osun  State, Past Director IFATSEA (International Federation of Air Traffic Electronics association) African Region, Member Board of Trustee - Women in Aviation Nigerian Chapter, Associate member of UK- Based Chartered Institute of Arbitrators, Member Association of Women in Aviation Maintenance (AWAM), Member COREN Engineering Accreditation Committee(EAC), She is a United Nations Training and Research (UNITAR) Global Diplomacy (GDI) Fellow class of 2024.",
+        intro2: "She is a STEM, gender equity and inclusion advocate, a committed change agent so passionate about girl -child education and women empowerment. She has traversed all the six geopolitical zones in Nigeria with her “Invent It, Build It” initiative under APWEN and awarded scholarships to 81 pupils from primary to university levels, as well as initiated (7) seven science and technology laboratories in seven states primary schools across the six geo political zones in Nigeria in partnership with NNPC. She is currently building capacity of STEM teachers across the six geopolitical zones in partnership with University of West of Scotland through the “SHEENGINEER Invent It, Build It” programme sponsored by Royal Academy of Engineering UK as the grant awardee. A recipient of GCRF phase 4 African catalyst awards by the Royal Academy of Engineering for the SheEngineer 30% club project. She is presently mentoring the Institution of Engineers Kenya on Engineering Alliance project under the Royal Academy GCRF African catalyst  phase 6.",
+        intro3: "She is a recipient of many awards including 2020 NSE Distinguished honour award, 2019, 2022 NSE Presidential merit award, 2023 NSE Abuja branch individual honor award, NSE Maiduguri branch distinguished merit  award, 2021 Nigerian Institution of Water Engineers (NIWE) Distinguished merit award, 2021 University of Nigeria Nsukka (UNN) Electrical/Electronic Engineering award of Excellence, 2019 NSE Abuja Merit Award, 2018 CED Magazine Outstanding Professional in the Built Environment, 2019 Excellence Award in Public Service by Njikoka Local Government, Anambra State, 2007 Women in Aviation Special recognition award, 2010 Emerging Leader Award of the Association of Professional Women Engineers of Nigeria (APWEN), 2012 League of Airport and Aviation Correspondent (LAAC) Special Woman Trial Blazer Award, APWEN Reformational Leadership award, 2018 & 2019 APWEN Biennial woman award, 2021, 2022  and   2023 Aviators Africa Tower Change Maker  award (STEM category). . She was among the top 274 global engineering Icons Celebrated with the EngineeringIConsTube map by the Royal Academy of Engineering and Transportation Federation of London (TFL) on November 1st 2023 in celebration of National Engineering Day. Ryaners Station lane on the London Metropolitan/ Piccadilly Line was renamed after Felicia Nnenna Agubata. She is 2025 Ascent 100 top career women in Africa and 2025 National Engineering Role Model nominee. She is happily married with children.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/speaker.jpg"
+      },
+      "izionworu": {
+        name: "Engr. Dr. Vincent Onuegbu Izionworu",
+        position: "FNSE",
+        intro: "Engr. Dr. Vincent Onuegbu Izionworu, FNSE, is a distinguished corrosion engineering expert, academic leader, and industry consultant with over 20 years of experience in material science and engineering. He is currently a <strong>Reader (Associate Professor)</strong> in the Department of Chemical and Petrochemical Engineering at Rivers State University, where he has trained over 1,000 engineers and supervised numerous postgraduate research projects. He has actively engaged in collaborative research—notably the Corrosion UMT-UKM-RSU 1+2 project—and led the RSU Faculty of Engineering Exhibition Committee, bridging academia, industry, and government (including NCDMB) to promote local content development.",
+        intro1: "Beyond academia, Dr. Izionworu serves as Consulting Coordinator for Technical Quality Assurance at B.G. Technical Limited (BGT). He established BGT’s procurement department, implemented ISO 9001:2015, 14001:2015, and 45001:2018 systems, and contributed to major oil and gas projects for SPDC, TotalEnergies, Chevron, Seplat, and others. His initiatives include developing an Enterprise Resource Planner (ERP) and advancing BGT’s status as a Nigerian OEM for intelligent pigging.",
+        intro2: "He holds a B.Eng. in Polymer and Textile Engineering (FUTO, 2001), M.Tech. in Chemical Engineering (RSUST, 2009), and Ph.D. in Chemical Engineering (RSU, 2020). Professionally, he is COREN-registered, a Fellow of the Nigerian Society of Engineers (FNSE), and a member of NIEE and PLAN. His certifications include ISO Internal Auditor, NDT Level II ASNT, and Professional Diploma in Purchasing and Supply Management. A former Quality Assurance & Quality Control expert in Michelin, France, Dr. Izionworu combines academic excellence with hands-on industrial experience, continuing to shape engineering innovation, quality assurance, and capacity development in Nigeria and beyond.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/vincent.jpg"
+      },
+      "attah": {
+        name: "ENGR. TONY ATTAH, FNSE",
+        position: "MD/CEO RENAISSANCE AFRICA ENERGY COMPANY LTD",
+        intro: "A seasoned leader with over 25 years of experience in the oil and gas sector, Engr. Tony Attah holds a Mechanical Engineering degree(1987) from the University of Ibadan and an MBA(1997) from the University of Benin.His leadership development includes programmes at IMD- Geneva; INSEAD, France; Harvard, and Cambridge(UK), complemented by specialist training in oil and gas exploration and production, HSE, business economics, maintenance engineering, auditing, project management, and gas processing.<br>Engr. Attah began his career in manufacturing (Sokoto Cement Company, 1988) before joining The Shell Petroleum Development Company of Nigeria(SPDC) in 1991 as a Maintenance Engineer.His early career involved significant technical exposure in maintenance, production, engineering, and major projects(including the Forcados Terminal and Sea Eagle Floating Production, Storage and Offloading vessel – FPSO).He later served as Head of Joint Venture Economics(2000- 2004) and Asset Superintendent for the critical Soku Gas Plant.",
+        intro1: " From 2007, Engr. Attah held international roles at Royal Dutch Shell headquarters in the Netherlands, overseeing Shell's operational readiness and assurance for the Sakhalin project in Russia and Shell's Sub-Saharan Africa project portfolio. He provided crucial technical and leadership support for major projects like Sakhalin Energy Phase II, Bonny Terminal Integrated Projects, Afam gas and power, and the Gbaran Ubie Integrated Oil and Gas project in Nigeria. Returning to Nigeria in 2009, he became General Manager Shell Western Operations and Sustainable Development, focusing on non- technical risks and embedding sustainable practices.He progressed to Vice President for HSE and Corporate Affairs in Sub- Saharan Africa, managing Shell’s reputation, communications, security, sustainable development, government relations, and HSE.",
+        intro2: "In 2013, he was appointed Vice President for Human Resources for Sub Saharan Africa and Managing Director of Shell Nigeria Exploration and Production Company Limited (SNEPCo), leading Shell's offshore operations in Nigeria and Gabon. In late 2015, Engr. Attah became the Shell Royal Dutch Group (RDS) Integrated Gas Senior Projects Advisor, aligning with Shell's strategic focus on gas. He held this role until September 2016, when he was appointed Managing Director and CEO of Nigeria LNG(NLNG), where he spearheaded significant milestones including the FID for Train 7, completion of the new corporate headquarters, record production in 2019, and a business transformation initiative.",
+        intro3: "Under his leadership, NLNG was recognised as Company of the Year(2019 & 2020) and Company of the Decade(2020), also winning the LNG Global Award for exceptional performance in 2020. <br>A member of the Nigerian Society of Engineers (NSE), a chartered engineer with COREN, and a member of the Society of Petroleum Engineers(SPE), Engr.Attah actively contributes to engineering development.He has served on numerous boards, including SPDC, River State/ DADTCo Cassava Initiative Board, Amnesty Oil and Gas Industry Foundation, Shell Nigeria Infrastructure Development company, Shell Nigeria Closed Pension Fund Board, SNEPCo, NLNG, and Bonny Gas Transport Company(BGT).Known for his professionalism, integrity, analytical skills, pragmatic approach, and team leadership, Engr.Attah is a strong advocate for talent development.He is married to Amaorubo Oma Attah, and they both have two children.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/attah.jpg"
+      },
+      "amagada": {
+        name: "ENGR. ELOHO INNOCENT AMAGADA",
+        position: "FNSE, FNIMechE, FIMC, MIEI",
+        intro: "Engr. Eloho Innocent Amagada is a result-oriented professional with over 25 years of extensive experience in Pipeline Asset Integrity Management, Engineering, Procurement, Construction, and Project Management Services. His expertise spans engineering design, project initiation, planning, and execution, particularly within the oil, gas, and energy sectors.<br> Engr. Amagada is a registered engineer with the Council for the Regulation of Engineering in Nigeria (COREN) and holds memberships and fellowships with numerous prestigious institutions including: Fellow Nigerian Society of Engineers (FNSE), Institution of Engineers Ireland (IEI), Fellow Nigerian Institution of Mechanical Engineers (FNIMechE), Fellow Institute of Management Consultants (IMC), Member Association of Energy Engineers (AEE), Member Society of Petroleum Engineers and Member Board of Trustees, Pipeline Professionals Association of Nigeria (PLAN).",
+        intro1: "He hold B.Eng. in Mechanical and Production Engineering, Enugu State University of Science and Technology. MBA in Energy & Sustainability, University of Cumbria, UK. Executive Master’s Certificate in Project Management, Project Management College (PMC), UK. Professional Certificate in Project Management, University College Dublin Ireland. Numerous additional certifications and training programs, both locally and internationally.<br>Engr. Amagada began his career as an engineer in the Works Department of Isoko South Local Government Area, Delta State, before joining Shell Petroleum Development Company (SPDC) in 2003 as a QA/QC Engineer. <br>Further honed his expertise at Hermann & Cross Ltd, starting as a UT Engineer and rising to Pipelines Manager and Business Development Manager.",
+        intro2: "In 2010, Engr. Amagada joined DSV Pipetronix Ltd as Base Manager for the Western Division, later advancing to the role of Senior Operations Manager. Here, he spearheaded major projects across Nigeria and the West African sub-region, including: Integrity inspection of the 30” Itoki to LBCS Pipeline for the West African Gas Pipeline (WAGP) in Ghana. The world’s first Pipe-in-Pipe inspection for Shell Nigeria Exploration and Production Company (SNEPCO), setting a global benchmark in offshore pipeline inspection.  He is currently the Principal Consultant for Amelin Energy Limited (Europe) and the CEO of Amelin Projects Ltd, a wholly Nigerian service company focused on providing engineering, procurement, construction, and asset integrity management services.",
+        intro3: "<strong>Key Publications & Speaking Engagements: Harnessing Great Opportunities in the Nigerian Oil & Gas Sector, presented at the ROSEN Europe Global Conference, Holland, 2013. Nigerian Local Content: A Panacea for Industrialization, Development, and Empowerment, delivered at the Nigerian Institution of Mechanical Engineers Annual Public Lecture, Warri, Delta State, 2018. Implementing Practical and Winning Strategies for Energy Transition in Nigeria and Winning Strategies for Energy Transition: Climate Change Impacts for Global Sustainability, presented at the Construction and Engineering Digest (CED) 26th & 27th Annual Forum in Lagos, where he received double awards for his contributions.</strong><br>Engr. Amagada is a devoted Christian from Emede, Isoko South Local Government Area, Delta State. He is a proud husband and father.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/engnr.jpg"
+      },
+      "asiegbu": {
+        name: "Mr. Daniel Asiegbu",
+        position: "QHSE Professional",
+        intro: "Mr. Daniel Asiegbu is a dedicated Quality, Health, Safety, and Environment (QHSE) professional with over 13 years of experience in the pipeline pigs manufacturing industry. He currently serves as the QHSE Manager at Pipeline Pigs & Accessories Ltd, where he leads initiatives that uphold quality standards, safety compliance, and operational integrity across the organization.",
+        intro1: "Mr. Asiegbu holds a Bachelor of Science (B.Sc.) degree in Physics (Hons) and is an ISO 9001:2015 Lead Auditor. He also possesses HSE Levels 1, 2, and 3 professional certifications from the Institute of Safety Professionals of Nigeria (ISPON).",
+        intro2: "Throughout his career, Mr. Asiegbu has demonstrated a passionate and proactive approach to achieving product excellence and service reliability. He oversees product quality monitoring, testing supervision, and compliance with Quality Management System (QMS) standards. His collaborative leadership approach has been instrumental in launching sustainable solutions, streamlining operations, and fostering multi-stakeholder engagement to enhance organizational performance and customer satisfaction.",
+        intro3: "Mr. Asiegbu remains committed to promoting a culture of quality, safety, and continuous improvement, contributing meaningfully to sustainable growth and innovation within the Oil & Gas Equipment and Services Sub-sector and the Petroleum Industry at large.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/Daniel.jpg"
+      },
+      "sibe": {
+        name: "Dr. Robinson Tombari Sibe",
+        position: "CEO and Lead Forensic Examiner of Digital Footprints Ltd",
+        intro: "Dr. Robinson Tombari Sibe is a Digital Forensics and Cybersecurity expert with over two decades of professional experience. He is the CEO and Lead Forensic Examiner of Digital Footprints Ltd, Nigeria's leading digital forensics and cybersecurity company. He has successfully led several high-impact projects in cybersecurity and digital forensics, and delivered specialized training for law enforcement agencies, criminal justice departments, the military, financial institutions, the energy sector, and leading multinational and multilateral organizations, both in Nigeria and internationally. He is a Lecturer at the Rivers State University.",
+        intro1: "In 2025, Dr. Sibe was honoured as <strong>Cybersecurity Personality of the Year by Nigeria's leading technology agencies</strong> (event was organized by the Federal Ministry of Communications, Innovation and Digital Economy, National Information Technology Development Agency [NITDA], and Office of the National Security Adviser), in recognition of his contributions to advancing national cybersecurity capacity. He is the co-author of the book, Cybercrime, Digital Forensic Readiness, and Financial Crime Investigation in Nigeria.",
+        intro2: "Dr. Sibe is an official member of the <strong>Forbes Technology Council, a Visiting Fellow of the University of South Wales</strong>, and also serves on the Advisory Board of the University of the Cumberlands PhD IT Programme. He holds a PhD in Information Technology (Digital Forensics) and a Master of Science in Digital Forensics from the University of the Cumberlands, USA. He also has a Master of Engineering degree in Electronic/Telecommunication Engineering from the University of Port Harcourt and a Bachelor a Technology in Computer Engineering from Rivers State University. He also has multiple industry certifications in cybersecurity and digital forensics.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/robin.jpg"
+      },
+      "obi": {
+        name: "Rev. Fr. Edward Obi",
+        position: "Catholic Priest and Social Ethicist",
+        intro: "Fr. Edward Obi, MSP, Ph.D, is a Catholic Priest and social ethicist. He is a researcher and advocate in the broad area of good governance, safe environments, and secure livelihoods. He has been National Coordinator of a broad coalition of environmental NGOs working for peace and curbing violence related to oil and gas operations in the Niger Delta region of Nigeria. Fr. Obi’s involvement with PLAN spans over 10 years to the era of severe third-party pipeline vandalization and oil theft, always representing the views of Civil Society and the impacted-poor in rural communities. He is now based in Canada as a Missionary, while also studying the environmental impact of resource extraction and transportation in parts of Saskatchewan and Alberta Provinces.",
+        image: "file:///C:/Users/ADMIN/Documents/web/assets/images/rev.jpg"
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const speakerId = params.get('id');
+      const profileContainer = document.getElementById('profileContent');
+
+      if (speakerId && speakers[speakerId]) {
+        const speaker = speakers[speakerId];
+
+        // Construct the HTML for the profile
+        profileContainer.innerHTML = `
+                    <img src="${speaker.image}" alt="${speaker.name}">
+                    <h1>${speaker.name}</h1>
+                    <h2>${speaker.position}</h2>
+                    <p>${speaker.intro}</p>
+                    ${speaker.intro1 ? `<p>${speaker.intro1}</p>` : ''}
+                    ${speaker.intro2 ? `<p>${speaker.intro2}</p>` : ''}
+                    ${speaker.intro3 ? `<p>${speaker.intro3}</p>` : ''}
+                    <a href="index.html" class="btn btn-style mt-4">← Back to Speakers</a>
+                `;
+      } else {
+        profileContainer.innerHTML = `
+                    <h1>Profile Not Found</h1>
+                    <p>The requested speaker profile could not be loaded. Please return to the main speaker list.</p>
+                    <a href="index.html" class="back-link">← Back to Speakers</a>
+                `;
+      }
+    });
+  </script>
+
+  <!-- theme switch js (light and dark)-->
+  <script src="assets/js/theme-change.js"></script>
+  <!-- //theme switch js (light and dark)-->
+
+  <!-- MENU-JS -->
+  <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        // Handle Paystack callback logic in a separate async function
+        async function handlePaystackCallback(response, exhibitor) {
+          alert("✅ Payment successful! Reference: " + response.reference);
+
+          // ✅ Save record to Supabase (in the shared "sponsors" table)
+          try {
+            const { data, error } = await supabase
+              .from("sponsors")
+              .insert([
+                {
+                  name: exhibitor.name,
+                  email: exhibitor.email,
+                  phone_number: exhibitor.phone,
+                  package: exhibitor.package,
+                  amount: exhibitor.amount,
+                  type: "exhibitor", // ✅ Add this field to distinguish from sponsors
+                  payment_reference: response.reference,
+                  paid: true,
+                },
+              ]);
+
+            if (error) {
+              console.error("❌ Supabase insert error:", error);
+              alert("Error saving to database: " + error.message);
+            } else {
+              console.log("✅ Saved to Supabase:", data);
+            }
+          } catch (err) {
+            console.error("Unexpected error:", err);
+            alert("An unexpected error occurred. Please try again.");
+          }
+
+          closePaymentModal();
+        }
+
+        function closePaymentModal() {
+          document.getElementById("payment-modal").style.display = "none";
+        }
+      });
+    });
+  </script>
+  <!-- //MENU-JS -->
+
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- //disable body scroll which navbar is in active -->
+
+  <!-- bootstrap -->
+  <script src="assets/js/bootstrap.min.js"></script>
+  <!-- //bootstrap -->
+  <!-- //Js scripts -->
+  <script>
+    (function () {
+      function c() {
+        var b = a.contentDocument || a.contentWindow.document;
+        if (b) {
+          var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'980a65d728dced9e',t:'MTc1ODEzMDkyMg=='};var a=document.createElement('script');a.src='../../../../../../cdn-cgi/challenge-platform/h/g/scripts/jsd/f78657f80e4b/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";
+          b.getElementsByTagName('head')[0].appendChild(d)
+        }
+      } if (document.body) {
+        var a = document.createElement('iframe');
+        a.height = 1; a.width = 1;
+        a.style.position = 'absolute';
+        a.style.top = 0;
+        a.style.left = 0;
+        a.style.border = 'none';
+        a.style.visibility = 'hidden';
+        document.body.appendChild(a);
+        if ('loading' !== document.readyState) c();
+        else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+        else {
+          var e = document.onreadystatechange || function () { };
+          document.onreadystatechange = function (b) {
+            e(b);
+            'loading' !== document.readyState && (document.onreadystatechange = e, c())
+          }
+        }
+      }
+    })();
+  </script>
+
+  <footer class="w3l-footer py-5">
+    <div class="container pt-4">
+      <div class="row">
+        <div class="col-lg-4 sub-one-left">
+          <h6>About </h6>
+          <p> NIPITECS was established in 2013 through a collaboration between the Pipeline
+            Professionals
+            Association of Nigeria (PLAN) and Energy Corporate Africa (ECA), a renowned US-based
+            organizer
+            of energy events. The goal was simple yet powerful: to position Nigeria and
+            Sub-Saharan Africa
+            on the global map for pipeline infrastructure, technology, and security investment.
+          </p>
+          <ul class="social mt-4 pt-lg-1">
+            <li><a href="https://www.facebook.com/share/1BLYFQx51p/"><span class="fab fa-facebook-f"></span></a></li>
+            <li><a href="https://x.com/nipitecs"><span class="fab fa-twitter"></span></a></li>
+            <li><a href="https://www.youtube.com/channel/UCSr9hBhu5Ngy7fMem_n3ULA"><span
+                  class="fa-brands fa-youtube"></span></a></li>
+            <li><a href="https://instagram.com/planngco"><span class="fab fa-instagram"></span></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-5 col-md-6 mt-lg-0 mt-5 px-lg-5 sub-two-right">
+          <h6>NIPITECS 2025</h6>
+          <div class="footer-post">
+            <ul>
+              <li><a href="#post">Abuja Continental
+                  Hotels, Nigeria</a></li>
+              <li class="mx-2"><a href="#post">November 11 - 12 2025</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mt-lg-0 mt-5 sub-one-left">
+          <h6>Contact </h6>
+          <div class="column2">
+            <div class="href1"><span class="fas fa-envelope-open"></span><a href="mailto:nipitecs@nipitecs.com">
+                nipitecs@nipitecs.com
+              </a>
+            </div>
+            <div class="href2 my-3"><span class="fas fa-phone-alt"></span><a
+                href="tel:+2347061643086">+2347061643086</a>
+            </div>
+            <div>
+              <p class="contact-para mb-3"><span class="fas fa-map-marker-alt"></span>Abuja
+                Continental
+                Hotels, Nigeria</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright-footer text-center mt-5 pt-sm-4 pt-2">
+        <p>&copy; 2025 NIPITECS. All rights reserved | Design by <a href="https://build.harvoxx.com/">Build with
+            Harvoxx</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
